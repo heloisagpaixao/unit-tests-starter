@@ -13,7 +13,7 @@ describe("soma", () => {
     expect(soma(2, 3)).toBe(5);
   });
 
-  // Teste com soma com número negativo
+  // Criar teste com soma com número negativo
   test("soma um numero negativo com um numero positivo", () => {
     expect(soma(-12, 9)).toBe(-3);
   });
@@ -31,7 +31,7 @@ describe("raiz", () => {
     );
   });
 
-  // Teste com raiz quadrada de 9
+  // Criar teste com raiz quadrada de 9
   test("raiz quadrada exata", () => {
     expect(raiz(9)).toBe(3);
   });
