@@ -1,15 +1,15 @@
 const express = require("express");
-const ProdutoRepository = require("../repositories/ProdutoRepository");
+const ProdutoRepository = require("./repositories/ProdutoRepository");
 const ProdutoService = require("./services/ProdutoService");
 const ProdutoController = require("./controllers/ProdutoController");
 const createProdutosRouter = require("./routes/produtos.routes");
 
-const ClienteRepository = require("../repositories/ClienteRepository");
+const ClienteRepository = require("./repositories/ClienteRepository");
 const ClienteService = require("./services/ClienteService");
 const ClienteController = require("./controllers/ClienteController");
 const createClientesRouter = require("./routes/clientes.routes");
 
-const PedidoRepository = require("../repositories/PedidoRepository");
+const PedidoRepository = require("./repositories/PedidoRepository");
 const PedidoService = require("./services/PedidoService");
 const PedidoController = require("./controllers/PedidoController");
 const createPedidosRouter = require("./routes/pedidos.routes");
@@ -19,6 +19,15 @@ const createPedidosRouter = require("./routes/pedidos.routes");
 function createApp() {
   const app = express();
   app.use(express.json());
+
+  // CORS: libera o acesso dos front-ends, que rodam em outra porta (outra origem).
+  app.use((req, res, next) => {
+    res.header("Access-Control-Allow-Origin", "*");
+    res.header("Access-Control-Allow-Methods", "GET,POST,PUT,PATCH,DELETE");
+    res.header("Access-Control-Allow-Headers", "Content-Type");
+    if (req.method === "OPTIONS") return res.sendStatus(204);
+    next();
+  });
 
   const repository = new ProdutoRepository();
   const service = new ProdutoService(repository);
