@@ -17,7 +17,7 @@ export default defineConfig({
     },
     {
       command: "npm run dev",
-      url: "http://localhost:5153",
+      url: "http://localhost:5173",
       reuseExistingServer: false,
     },
   ],
